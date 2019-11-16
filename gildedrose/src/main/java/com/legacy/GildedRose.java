@@ -32,9 +32,6 @@ public class GildedRose {
                 }
             } else {
                 increase(items[i]);
-
-
-
             }
 
             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -52,9 +49,7 @@ public class GildedRose {
 
                         }
                     } else {
-                        items[i].quality = 0;
-
-                        itemDao.saveQuality(items[i]);
+                        drop(i);
 
                     }
                 } else {
@@ -62,6 +57,12 @@ public class GildedRose {
                 }
             }
         }
+    }
+
+    private void drop(int i) {
+        items[i].quality = 0;
+
+        itemDao.saveQuality(items[i]);
     }
 
     private void decrease(int i) {
