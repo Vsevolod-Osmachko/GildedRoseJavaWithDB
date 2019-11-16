@@ -59,7 +59,7 @@ public class GildedRose {
                             }
                         }
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        items[i].quality = 0;
 
                         itemDao.saveQuality(items[i]);
 
