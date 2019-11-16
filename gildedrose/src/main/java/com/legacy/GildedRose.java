@@ -13,25 +13,21 @@ public class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            if (!items[i].name.equals("Aged Brie") && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
                     decrease(i);
                 }
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                increase(items[i]);
 
-                    itemDao.saveQuality(items[i]);
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            increase(items[i]);
-                        }
+                if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (items[i].sellIn < 11) {
+                        increase(items[i]);
+                    }
 
-                        if (items[i].sellIn < 6) {
-                            increase(items[i]);
-                        }
+                    if (items[i].sellIn < 6) {
+                        increase(items[i]);
                     }
                 }
             }
