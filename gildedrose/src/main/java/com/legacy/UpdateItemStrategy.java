@@ -9,7 +9,9 @@ public abstract class UpdateItemStrategy {
     }
 
     public void updateSellIn(Item item){
+        item.sellIn = item.sellIn - 1;
 
+        itemDao.saveSellIn(item);
     }
 
     public abstract void updateQuality(Item item);
