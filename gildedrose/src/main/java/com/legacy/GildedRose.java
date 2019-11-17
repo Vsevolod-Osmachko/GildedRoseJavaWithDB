@@ -56,14 +56,6 @@ public class GildedRose {
         itemDao.saveQuality(items[i]);
     }
 
-    private void increase(Item item) {   //TODO move completely
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
-
-            itemDao.saveQuality(item);
-        }
-    }
-
 
     public ItemDao getItemDao() {
         return itemDao;
