@@ -8,11 +8,11 @@ public abstract class UpdateItemStrategy {
         this.itemDao = itemDao;
     }
 
-    public void updateSellIn(Item i){
+    public void updateSellIn(Item item){
 
     }
 
-    public abstract void updateQuality(Item i);
+    public abstract void updateQuality(Item item);
 
 
     protected void increase(Item item) {

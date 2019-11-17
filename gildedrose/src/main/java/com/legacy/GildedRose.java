@@ -16,19 +16,7 @@ public class GildedRose {
 
 
             if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].sellIn < 1) {
-                    drop(i);
-                } else if (items[i].sellIn < 6) {
-                    increase(items[i]);
-                    increase(items[i]);
-                    increase(items[i]);
-                } else if (items[i].sellIn < 11) {
-                    increase(items[i]);
-                    increase(items[i]);
-                } else
-                    increase(items[i]);
-
-
+                new BackstagePassesItemStrategy(itemDao).updateQuality(items[i]);
             }
 
             if (items[i].name.equals("Aged Brie")) {
@@ -60,11 +48,6 @@ public class GildedRose {
         return !item.name.equals("Aged Brie") && !item.name.equals("Backstage passes to a TAFKAL80ETC concert") && !item.name.equals("Sulfuras, Hand of Ragnaros");
     }
 
-    private void drop(int i) {
-        items[i].quality = 0;
-
-        itemDao.saveQuality(items[i]);
-    }
 
     private void decrease(int i) {
         if (items[i].quality > 0)
