@@ -34,18 +34,6 @@ public class GildedRose {
         }
     }
 
-    private boolean isDefault(Item item) {
-        return !item.name.equals("Aged Brie") && !item.name.equals("Backstage passes to a TAFKAL80ETC concert") && !item.name.equals("Sulfuras, Hand of Ragnaros");
-    }
-
-
-
-
-
-    public ItemDao getItemDao() {
-        return itemDao;
-    }
-
     public void setItemDao(ItemDao itemDao) {
         this.itemDao = itemDao;
     }
