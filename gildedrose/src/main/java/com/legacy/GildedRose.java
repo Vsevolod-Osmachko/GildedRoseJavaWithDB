@@ -32,7 +32,7 @@ public class GildedRose {
             }
 
             if (items[i].name.equals("Aged Brie")) {
-                increase(items[i]);
+                new AgedBrieItemStrategy(itemDao).updateQuality(items[i]);
             }
 
 
@@ -73,7 +73,7 @@ public class GildedRose {
         itemDao.saveQuality(items[i]);
     }
 
-    private void increase(Item item) {
+    private void increase(Item item) {   //TODO move completely
         if (item.quality < 50) {
             item.quality = item.quality + 1;
 
