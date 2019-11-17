@@ -31,11 +31,15 @@ public class GildedRoseTest {
         gildedRose = new GildedRose(items);
         final ItemDaoDummy itemDao = new ItemDaoDummy();
         gildedRose.setDefaultItemStrategy(new DefaultItemStrategy(itemDao));
-        gildedRose.setItemStrategyMap(new HashMap<String, UpdateItemStrategy>(){{
+        gildedRose.setItemStrategyMap(createItemStrategyMap(itemDao));
+    }
+
+    private HashMap<String, UpdateItemStrategy> createItemStrategyMap(final ItemDaoDummy itemDao) {
+        return new HashMap<String, UpdateItemStrategy>(){{
             put("Aged Brie", new AgedBrieItemStrategy(itemDao));
             put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassesItemStrategy(itemDao));
             put("Sulfuras, Hand of Ragnaros", new SulfurasItemStrategy(itemDao));
-        }});
+        }};
     }
 
     @Test
