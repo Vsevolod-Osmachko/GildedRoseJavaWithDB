@@ -31,15 +31,8 @@ public class GildedRose {
             }
 
             if (isDefault(items[i])) {
-                decrease(i);
-
-                if (items[i].sellIn < 1) {
-                    decrease(i);
-
-                }
-
-                //TODO create Default Strategy
-                new AgedBrieItemStrategy(itemDao).updateSellIn(items[i]);
+                new DefaultItemStrategy(itemDao).updateQuality(items[i]);
+                new DefaultItemStrategy(itemDao).updateSellIn(items[i]);
             }
 
 
@@ -51,12 +44,7 @@ public class GildedRose {
     }
 
 
-    private void decrease(int i) {
-        if (items[i].quality > 0)
-            items[i].quality = items[i].quality - 1;
 
-        itemDao.saveQuality(items[i]);
-    }
 
 
     public ItemDao getItemDao() {
