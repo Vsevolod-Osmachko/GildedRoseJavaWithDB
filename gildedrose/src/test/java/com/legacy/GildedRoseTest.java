@@ -30,7 +30,7 @@ public class GildedRoseTest {
     public void setUp() throws Exception {
         gildedRose = new GildedRose(items);
         final ItemDaoDummy itemDao = new ItemDaoDummy();
-        gildedRose.setItemDao(itemDao);
+        gildedRose.setDefaultItemStrategy(new DefaultItemStrategy(itemDao));
         gildedRose.setItemStrategyMap(new HashMap<String, UpdateItemStrategy>(){{
             put("Aged Brie", new AgedBrieItemStrategy(itemDao));
             put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassesItemStrategy(itemDao));

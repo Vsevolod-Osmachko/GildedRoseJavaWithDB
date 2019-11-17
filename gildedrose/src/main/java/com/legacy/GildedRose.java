@@ -5,8 +5,7 @@ import java.util.Map;
 
 public class GildedRose {
 
-
-    private ItemDao itemDao = new ItemDaoImpl();
+    private UpdateItemStrategy defaultItemStrategy;
 
     private Item[] items;
 
@@ -26,16 +25,16 @@ public class GildedRose {
                 itemStrategyMap.get(items[i].name).updateSellIn(items[i]);
 
             } else {
-                new DefaultItemStrategy(itemDao).updateQuality(items[i]);
-                new DefaultItemStrategy(itemDao).updateSellIn(items[i]);
+                defaultItemStrategy.updateQuality(items[i]);
+                defaultItemStrategy.updateSellIn(items[i]);
             }
 
 
         }
     }
 
-    public void setItemDao(ItemDao itemDao) {
-        this.itemDao = itemDao;
+    public void setDefaultItemStrategy(UpdateItemStrategy defaultItemStrategy) {
+        this.defaultItemStrategy = defaultItemStrategy;
     }
 
     public void setItemStrategyMap(Map<String, UpdateItemStrategy> itemStrategyMap) {
