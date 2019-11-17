@@ -25,21 +25,16 @@ public class GildedRose {
                 } else if (items[i].sellIn < 11) {
                     increase(items[i]);
                     increase(items[i]);
-                }
-                else
+                } else
                     increase(items[i]);
 
 
             }
 
-            if (items[i].name.equals("Aged Brie")){
+            if (items[i].name.equals("Aged Brie")) {
                 increase(items[i]);
             }
 
-
-            if (isDefault(items[i])) {
-                decrease(i);
-            }
 
             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
                 items[i].sellIn = items[i].sellIn - 1;
@@ -48,12 +43,16 @@ public class GildedRose {
 
             }
 
-            if (items[i].sellIn < 0) {
-                if (isDefault(items[i])) {
+            if (isDefault(items[i])) {
+                decrease(i);
+
+                if (items[i].sellIn < 0) {
                     decrease(i);
 
                 }
             }
+
+
         }
     }
 
