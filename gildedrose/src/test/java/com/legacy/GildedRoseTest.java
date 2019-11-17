@@ -3,6 +3,8 @@ package com.legacy;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 
 public class GildedRoseTest {
@@ -27,7 +29,13 @@ public class GildedRoseTest {
     @Before
     public void setUp() throws Exception {
         gildedRose = new GildedRose(items);
-        gildedRose.setItemDao(new ItemDaoDummy());
+        final ItemDaoDummy itemDao = new ItemDaoDummy();
+        gildedRose.setItemDao(itemDao);
+        gildedRose.setItemStrategyMap(new HashMap<String, UpdateItemStrategy>(){{
+            put("Aged Brie", new AgedBrieItemStrategy(itemDao));
+            put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassesItemStrategy(itemDao));
+            put("Sulfuras, Hand of Ragnaros", new SulfurasItemStrategy(itemDao));
+        }});
     }
 
     @Test

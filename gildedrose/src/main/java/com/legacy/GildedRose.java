@@ -1,11 +1,17 @@
 package com.legacy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GildedRose {
 
 
-    ItemDao itemDao = new ItemDaoImpl();
+    private ItemDao itemDao = new ItemDaoImpl();
 
-    Item[] items;
+    private Item[] items;
+
+    private Map<String, UpdateItemStrategy> itemStrategyMap = new HashMap<String, UpdateItemStrategy>();
+
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -15,22 +21,11 @@ public class GildedRose {
         for (int i = 0; i < items.length; i++) {
 
 
-            if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                new BackstagePassesItemStrategy(itemDao).updateQuality(items[i]);
-                new BackstagePassesItemStrategy(itemDao).updateSellIn(items[i]);
-            }
+            if (itemStrategyMap.containsKey(items[i].name)){
+                itemStrategyMap.get(items[i].name).updateQuality(items[i]);
+                itemStrategyMap.get(items[i].name).updateSellIn(items[i]);
 
-            if (items[i].name.equals("Aged Brie")) {
-                new AgedBrieItemStrategy(itemDao).updateQuality(items[i]);
-                new AgedBrieItemStrategy(itemDao).updateSellIn(items[i]);
-            }
-
-            if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                new SulfurasItemStrategy(itemDao).updateQuality(items[i]);
-                new SulfurasItemStrategy(itemDao).updateSellIn(items[i]);
-            }
-
-            if (isDefault(items[i])) {
+            } else {
                 new DefaultItemStrategy(itemDao).updateQuality(items[i]);
                 new DefaultItemStrategy(itemDao).updateSellIn(items[i]);
             }
@@ -53,5 +48,9 @@ public class GildedRose {
 
     public void setItemDao(ItemDao itemDao) {
         this.itemDao = itemDao;
+    }
+
+    public void setItemStrategyMap(Map<String, UpdateItemStrategy> itemStrategyMap) {
+        this.itemStrategyMap = itemStrategyMap;
     }
 }
