@@ -4,7 +4,7 @@ public abstract class UpdateItemStrategy {
 
     private static final int MAX_QUALITY = 50;
 
-    ItemDao itemDao = new ItemDaoImpl();
+    protected ItemDao itemDao = new ItemDaoImpl();
 
     public UpdateItemStrategy(ItemDao itemDao) {
         this.itemDao = itemDao;

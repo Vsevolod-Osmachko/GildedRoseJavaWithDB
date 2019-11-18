@@ -1,4 +1,8 @@
-package com.legacy;
+package com.legacy.strategies;
+
+import com.legacy.Item;
+import com.legacy.ItemDao;
+import com.legacy.UpdateItemStrategy;
 
 public class BackstagePassesItemStrategy extends UpdateItemStrategy {
 

@@ -1,5 +1,9 @@
 package com.legacy;
 
+import com.legacy.strategies.AgedBrieItemStrategy;
+import com.legacy.strategies.BackstagePassesItemStrategy;
+import com.legacy.strategies.DefaultItemStrategy;
+import com.legacy.strategies.SulfurasItemStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
