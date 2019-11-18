@@ -10,17 +10,14 @@ public class BackstagePassesItemStrategy extends UpdateItemStrategy {
     }
 
     public void updateQuality(Item item) {
-        if (item.sellIn < 1) {
+        if (item.sellIn <= 0)
             drop(item);
-        } else if (item.sellIn <= SECOND_LIMIT) {
-            increase(item);
-            increase(item);
-            increase(item);
-        } else if (item.sellIn <= FIRST_LIMIT) {
-            increase(item);
-            increase(item);
-        } else
-            increase(item);
+        else if (item.sellIn <= SECOND_LIMIT)
+            increase(item, 3);
+        else if (item.sellIn <= FIRST_LIMIT)
+            increase(item, 2);
+        else
+            increase(item, 1);
     }
 
     private void drop(Item item) {

@@ -7,6 +7,6 @@ public class AgedBrieItemStrategy extends UpdateItemStrategy {
     }
 
     public void updateQuality(Item item) {
-        increase(item);
+        increase(item, 1);
     }
 }
