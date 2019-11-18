@@ -1,9 +1,6 @@
 package com.legacy;
 
-import com.legacy.strategies.AgedBrieItemStrategy;
-import com.legacy.strategies.BackstagePassesItemStrategy;
-import com.legacy.strategies.DefaultItemStrategy;
-import com.legacy.strategies.SulfurasItemStrategy;
+import com.legacy.strategies.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -130,7 +127,7 @@ public class GildedRoseTest {
         itemStrategyMap.put("Conjured", new ConjuredItemStrategy(itemDao));
         gildedRose.setItemStrategyMap(itemStrategyMap);
 
-        new GildedRose(items).updateQuality();
+        gildedRose.updateQuality();
 
     }
 
