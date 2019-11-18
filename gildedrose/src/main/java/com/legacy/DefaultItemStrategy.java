@@ -15,9 +15,12 @@ public class DefaultItemStrategy extends UpdateItemStrategy {
 
 
     private void decrease(Item item) {
+        decreaseItemQuality(item);
+        itemDao.saveQuality(item);
+    }
+
+    private void decreaseItemQuality(Item item) {
         if (item.quality > 0)
             item.quality = item.quality - 1;
-
-        itemDao.saveQuality(item);
     }
 }

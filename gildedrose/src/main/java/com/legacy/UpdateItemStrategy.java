@@ -25,8 +25,12 @@ public abstract class UpdateItemStrategy {
 
     protected void increase(Item item, int n) {
         if (item.quality < MAX_QUALITY) {
-            item.quality = item.quality + n;
+            increaseItemQuality(item, n);
             itemDao.saveQuality(item);
         }
+    }
+
+    private void increaseItemQuality(Item item, int n) {
+        item.quality = item.quality + n;
     }
 }
