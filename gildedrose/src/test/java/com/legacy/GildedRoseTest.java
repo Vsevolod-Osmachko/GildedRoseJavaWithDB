@@ -26,13 +26,17 @@ public class GildedRoseTest {
                     new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50)
             };
     private GildedRose gildedRose;
+    private final ItemDaoDummy itemDao = new ItemDaoDummy();
 
     @Before
     public void setUp() throws Exception {
+        createGildedRose(createItemStrategyMap(itemDao));
+    }
+
+    private void createGildedRose(HashMap<String, UpdateItemStrategy> itemStrategyMap) {
         gildedRose = new GildedRose(items);
-        final ItemDaoDummy itemDao = new ItemDaoDummy();
         gildedRose.setDefaultItemStrategy(new DefaultItemStrategy(itemDao));
-        gildedRose.setItemStrategyMap(createItemStrategyMap(itemDao));
+        gildedRose.setItemStrategyMap(itemStrategyMap);
     }
 
     private HashMap<String, UpdateItemStrategy> createItemStrategyMap(final ItemDaoDummy itemDao) {
@@ -119,13 +123,9 @@ public class GildedRoseTest {
     @Test
     public void shouldDecreaseTwiceQualityForConjuredItem() {
         items = new Item[]{new Item("Conjured", 5, 5)};
-
-        gildedRose = new GildedRose(items);
-        final ItemDaoDummy itemDao = new ItemDaoDummy();
-        gildedRose.setDefaultItemStrategy(new DefaultItemStrategy(itemDao));
         HashMap<String, UpdateItemStrategy> itemStrategyMap = createItemStrategyMap(itemDao);
         itemStrategyMap.put("Conjured", new ConjuredItemStrategy(itemDao));
-        gildedRose.setItemStrategyMap(itemStrategyMap);
+        createGildedRose(itemStrategyMap);
 
         gildedRose.updateQuality();
 
