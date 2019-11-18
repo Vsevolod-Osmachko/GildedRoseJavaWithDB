@@ -129,6 +129,8 @@ public class GildedRoseTest {
 
         gildedRose.updateQuality();
 
+        assertEquals(3, items[0].quality);
+
     }
 
 }
