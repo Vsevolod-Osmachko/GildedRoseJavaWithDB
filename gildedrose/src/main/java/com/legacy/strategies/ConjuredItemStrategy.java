@@ -2,14 +2,15 @@ package com.legacy.strategies;
 
 import com.legacy.Item;
 import com.legacy.ItemDao;
-import com.legacy.UpdateItemStrategy;
 
-public class ConjuredItemStrategy extends UpdateItemStrategy {
+public class ConjuredItemStrategy extends DefaultItemStrategy {
     public ConjuredItemStrategy(ItemDao itemDao) {
         super(itemDao);
     }
 
-    protected void updateQuality(Item item) {
-
+    @Override
+    public void updateQuality(Item item) {
+        super.updateQuality(item);
+        super.updateQuality(item);
     }
 }
