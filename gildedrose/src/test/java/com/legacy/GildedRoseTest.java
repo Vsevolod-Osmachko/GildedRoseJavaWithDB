@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GildedRoseTest {
 
-    private final Item[] items = new Item[]
+    private Item[] items = new Item[]
             {
                     new Item("Default", 10, 10),
                     new Item("Default", 0, 10),
@@ -119,5 +119,19 @@ public class GildedRoseTest {
         assertEquals(50, items[11].quality);
     }
 
+    @Test
+    public void shouldDecreaseTwiceQualityForConjuredItem() {
+        items = new Item[]{new Item("Conjured", 5, 5)};
+
+        gildedRose = new GildedRose(items);
+        final ItemDaoDummy itemDao = new ItemDaoDummy();
+        gildedRose.setDefaultItemStrategy(new DefaultItemStrategy(itemDao));
+        HashMap<String, UpdateItemStrategy> itemStrategyMap = createItemStrategyMap(itemDao);
+        itemStrategyMap.put("Conjured", new ConjuredItemStrategy(itemDao));
+        gildedRose.setItemStrategyMap(itemStrategyMap);
+
+        new GildedRose(items).updateQuality();
+
+    }
 
 }
