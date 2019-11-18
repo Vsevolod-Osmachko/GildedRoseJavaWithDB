@@ -2,25 +2,30 @@ package com.legacy;
 
 public abstract class UpdateItemStrategy {
 
+    private static final int MAX_QUALITY = 50;
+
     ItemDao itemDao = new ItemDaoImpl();
 
     public UpdateItemStrategy(ItemDao itemDao) {
         this.itemDao = itemDao;
     }
 
-    public void updateSellIn(Item item){
-        item.sellIn = item.sellIn - 1;
+    public void update(Item item){
+        updateQuality(item);
+        updateSellIn(item);
+    }
 
+    protected void updateSellIn(Item item){
+        item.sellIn = item.sellIn - 1;
         itemDao.saveSellIn(item);
     }
 
-    public abstract void updateQuality(Item item);
+    protected abstract void updateQuality(Item item);
 
 
     protected void increase(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1;
-
             itemDao.saveQuality(item);
         }
     }

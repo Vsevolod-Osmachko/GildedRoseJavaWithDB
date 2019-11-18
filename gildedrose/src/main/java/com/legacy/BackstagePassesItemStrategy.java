@@ -2,6 +2,9 @@ package com.legacy;
 
 public class BackstagePassesItemStrategy extends UpdateItemStrategy {
 
+    private static final int SECOND_LIMIT = 5;
+    private static final int FIRST_LIMIT = 10;
+
     public BackstagePassesItemStrategy(ItemDao itemDao) {
         super(itemDao);
     }
@@ -9,11 +12,11 @@ public class BackstagePassesItemStrategy extends UpdateItemStrategy {
     public void updateQuality(Item item) {
         if (item.sellIn < 1) {
             drop(item);
-        } else if (item.sellIn < 6) {
+        } else if (item.sellIn <= SECOND_LIMIT) {
             increase(item);
             increase(item);
             increase(item);
-        } else if (item.sellIn < 11) {
+        } else if (item.sellIn <= FIRST_LIMIT) {
             increase(item);
             increase(item);
         } else

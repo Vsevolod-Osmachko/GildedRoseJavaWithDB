@@ -9,11 +9,8 @@ public class DefaultItemStrategy extends UpdateItemStrategy {
 
     public void updateQuality(Item item) {
         decrease(item);
-
-        if (item.sellIn < 1) {
+        if (item.sellIn < 1)
             decrease(item);
-
-        }
     }
 
 

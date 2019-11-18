@@ -17,20 +17,11 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-
-
-            if (itemStrategyMap.containsKey(items[i].name)){
-                itemStrategyMap.get(items[i].name).updateQuality(items[i]);
-                itemStrategyMap.get(items[i].name).updateSellIn(items[i]);
-
-            } else {
-                defaultItemStrategy.updateQuality(items[i]);
-                defaultItemStrategy.updateSellIn(items[i]);
-            }
-
-
-        }
+        for ( Item item : items)
+            if (itemStrategyMap.containsKey(item.name))
+                itemStrategyMap.get(item.name).update(item);
+            else
+                defaultItemStrategy.update(item);
     }
 
     public void setDefaultItemStrategy(UpdateItemStrategy defaultItemStrategy) {
